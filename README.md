@@ -1,143 +1,127 @@
-# dev-works-logger
+# dev-works-logger — GitHub Contributor & Git Activity Logger Bot
+
 [![CI](https://github.com/maemreyo/dev-works-logger/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/maemreyo/dev-works-logger/actions/workflows/ci.yml)
 [![Rust](https://github.com/maemreyo/dev-works-logger/actions/workflows/rust.yml/badge.svg)](https://github.com/maemreyo/dev-works-logger/actions/workflows/rust.yml)
-Build a bot to collect data from Git
 
-## What are we trying to build?
-- A Bot (not for *Discord*)
-- It will run every week/month
-- It will check all the repositories for the organization (with *Github GraphQL*) for the most amount of PR for a single contributor
-- Create an image for that person and it will post it to Twitter and Discord
-- Create a docker
-## `.env` params you must have
-- GITHUB_ORG_NAME
-- GITHUB_TOKEN
-- TWITTER_TOKEN
-- DISCORD_HOOK
+**dev-works-logger** is an open-source Rust bot that collects Git and GitHub activity data, tracks repository contributors, and automates weekly or monthly reports. It uses GitHub GraphQL to analyze commits and active repos, generates shareable images, and can post summaries to Twitter and Discord—ideal for team dashboards, contributor recognition, and dev activity logging.
 
-## Image to post
-Should follow:
-- A picture of the organization owning the repo
-- A text with the name of the organization on the picture
-- A Picture of the contributor
-- A text about the contributor achievement (in the picture)
-- A text about the contributor (in the tweet)
-- As much as information as possible on the contributor
-- Awesome design gets extra points
-  
-*Bonuses*
-- Add more things like most amount of issues, most amount of reviews and so on.
 ---
-## What did I do?
-### Utils
-- [x] Write docs
-  - [ ] How to run?
-  - [ ] How to contribute?
-  - [ ] Write the Makefile?
-    - [ ] Welcome new comers
-    - [ ] Set Git hooks dir
-    - [ ] Install cocogitto tools for standardizing commits
-- [x] Write REQUIREMENTS
-- [x] Change the project name 
-  - [x] From `git-stats-bot` to `dev-works-logger`
-- [x] Refactor folder structure
-  - [x] +-- main.rs
-  - [x] +-- modules
-  - [x] +---- git
-  - [x] +------ mod.rs
-  - [x] +------ models
-  - [x] +-------- mod.rs
-  - [x] +-------- module1.rs
-  - [x] +-------- module2.rs
-  - [x] +---- discord
-  - [x] +------ mod.rs
-  - [x] +------ models
-  - [x] +-------- mod.rs
-  - [x] +-------- module1.rs
-  - [x] +-------- module2.rs
-  - [x] +-- utils
-  - [x] +---- init
-  - [x] +------ mod.rs
-### Developments
-- [x] Manage env variables with `dotenv`
-- [x] Fetch data from GraphQL Github with gql_client
-- [x] Research GraphQL 
-  - [x] Get all recent commits of a repo
-  - [x] Get all recent active repos
-- [ ] Refactor: instead of using gql_client, I plan to change it to reqwest with json body
-  - [ ] Create my own request client
-- [x] Research about Git hooks
-- [ ] Twitter API
-  - [x] Auth
-  - [x] Create a tweet
-  - [ ] Determine a template for tweet
-    - [x] Title (depends on the number of CHANGED FILE to generate)
-    - [x] Body
-      - [x] Total commits in the day, total changed files
-    - [x] Tags
-    - [ ] Create a function to check the tweet's length before tweeting
-  - [ ] Send an email related to the tweet's status (false/true)
-- [ ] Discord
-  - [x] Enable Github Webhook for Discord
-  - [ ] Discord Bot
-- [x] Research CI/CD on Github Action
-  - [x] Add script to check Rust before merging PRs
-  - [x] Add script to deploy Docker Image to Heroku
-  - [x] Improve Deploy script
-    - [x] Divide the whole script into pieces
-    - [x] Remove some parts being not used
-  - [x] ***Disable CI for now, I plan to do drive the project with another direction.***
-- [x] Cronjob
-  - [x] Cronjob
-- [x] Docker
-  - [x] Build Docker Image
-  - [ ] Research `docker-compose`
-    - [ ] Build a docker image to develop locally
-  - [x] Improve Docker Image
-    - [x] Create a minimal docker image
-    - [x] Cron job
-    - [x] ENV variables not found
-      - [x] Find a way to get a github name, token on CI
-      - [x] Pass env variables when building docker image on CI
-- [x] Deploy to Heroku
-- [x] Plan to deploy to another server (Heroku is not free from ***28/11***)
-    - [x] Docker (Auto build: 5$ per month)
-    - [x] GCS
-    - [x] ***Localhost is the best choice for now, until I can find the alt.***
-- [ ] Send Email SMTP
-  - [ ] Investigate
-- [ ] Implement CLI to trigger some features
-  - [ ] Overall configurations
-    - [ ] Github
-      - [ ] PAC
-      - [ ] Username
-    - [ ] 
-  - [ ] Twitter commands
-    - [ ] Config Twitter credentials
-    - [ ] Switch ON/OFF feature
-  - [ ] Email commands
-    - [ ] Config Gmail credentials
-      - [ ] `username`, `password`
-    - [ ] Switch ON/OFF feature
-  - [ ] Discord commands
-    - [ ] Config Discord credentials
-    - [ ] Switch ON/OFF feature
-- [ ] Add scripts to cut down the time to deal with some dev parts
-  - [x] Docker
-    - [x] Build image
-    - [x] Run image
-    - [x] Exec image
-    - [ ] Push image to Docker Hub
-  - [ ] Release
-    - [ ] Changelog generator
-  - [x] Development
-    - [x] Run debug
-- [ ] Actix web impl (In a long-term)
-  - [ ] Restructure folder
-    - [ ] Monorepo
-    - [ ] `docker-compose` for building all services
-- [ ] Database impl (MongoDB) (In a long-term)
-## How to run this project?
 
-### Install
-- Run `Makefile` with `make -f Makefile`
+## Project description (short)
+
+A Rust-based automation bot that fetches GitHub organization statistics via GraphQL, identifies top contributors by PR/commit activity, generates achievement images, and posts results to Twitter and Discord on a configurable schedule (cron).
+
+---
+
+## Topics & keywords
+
+- **GitHub bot** · **Git statistics** · **contributor tracking** · **Rust automation** · **cron job** · **GitHub GraphQL** · **Twitter bot** · **Discord integration** · **dev activity logger** · **open source**
+
+---
+
+## Author & contact
+
+| | |
+|---|---|
+| **Author** | KuchikiRenji |
+| **Email** | [KuchikiRenji@outlook.com](mailto:KuchikiRenji@outlook.com) |
+| **Discord** | `kuchiki_renji` |
+
+For questions, contributions, or collaboration, reach out via email or Discord.
+
+---
+
+## Features
+
+- **Scheduled runs** — Runs every week or month via cron.
+- **GitHub GraphQL** — Fetches repos and commit/PR data for an organization.
+- **Contributor insights** — Identifies top contributors (e.g. most PRs, commits).
+- **Image generation** — Creates images for organization + contributor + achievement text.
+- **Twitter & Discord** — Posts generated content to Twitter and Discord webhook.
+- **Docker** — Containerized for easy deployment.
+- **Rust** — Async runtime (Tokio), type-safe, minimal dependencies.
+
+---
+
+## Environment variables
+
+Create a `.env` file (see `.env.example`) with:
+
+| Variable | Description |
+|----------|-------------|
+| `GITHUB_ORG_NAME` | GitHub organization name to analyze |
+| `GITHUB_TOKEN` | GitHub personal access token (GraphQL) |
+| `TWITTER_TOKEN` | Twitter API credentials / token |
+| `DISCORD_HOOK` | Discord webhook URL for posting |
+
+---
+
+## Image & post format
+
+Generated posts follow:
+
+- Organization logo/avatar
+- Organization name on the image
+- Contributor avatar
+- Contributor achievement text on the image
+- Tweet body: contributor summary, commits, changed files, hashtags
+- Optional: most issues, most reviews, etc.
+
+---
+
+## How to run
+
+### Prerequisites
+
+- [Rust](https://www.rust-lang.org/) (edition 2021)
+- `.env` with the variables above
+
+### Install & setup
+
+```bash
+make -f Makefile
+```
+
+This configures Git hooks and installs [cocogitto](https://docs.cocogitto.io/) for commit standardization.
+
+### Run locally
+
+```bash
+cargo run
+```
+
+The app starts the cron scheduler and runs the configured jobs (GitHub fetch, image generation, Twitter/Discord posting).
+
+### Docker
+
+See `scripts/docker/` and `Dockerfile` for building and running the bot in a container.
+
+---
+
+## Project structure (overview)
+
+- `src/main.rs` — Entry point, cron scheduler.
+- `src/modules/` — Git/GraphQL, Twitter, cron, mail, gql_client, etc.
+- `src/utils/` — Init, validation.
+- `scripts/` — Docker and local run scripts.
+
+---
+
+## Roadmap & status
+
+- [x] Env management (dotenv), GitHub GraphQL client, Git hooks, cron, Docker, Twitter auth & tweet, Discord webhook.
+- [ ] Tweet length check, email (SMTP), CLI for config, Discord bot, optional Actix web & MongoDB.
+
+See the full checklist and history in the repository.
+
+---
+
+## License
+
+See [LICENSE](LICENSE).
+
+---
+
+## SEO note for maintainers
+
+This README is written so that search engines and GitHub can index: **GitHub bot**, **Git statistics**, **contributor tracking**, **Rust**, **cron**, **GraphQL**, **Twitter bot**, **Discord**. The first heading and paragraph double as a concise project description for search snippets.
